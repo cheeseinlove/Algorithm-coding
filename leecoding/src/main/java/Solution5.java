@@ -1,4 +1,4 @@
-class Solution {
+class Solution5 {
     public static boolean isPalindrome(String s) {
         for (int i = 0, j = s.length() - 1; j >= i; i++, j--) {
             if (s.charAt(i) != s.charAt(j)) {

@@ -15,12 +15,10 @@ public class NioTest {
             fc.write(ByteBuffer.wrap("this is the first nio demo".getBytes()));
             fc =new FileInputStream("test.txt").getChannel();
             fc.read(bf);
-            bf.flip();
+          bf.flip();
             while (bf.hasRemaining()){
                 System.out.print((char) bf.get());
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
