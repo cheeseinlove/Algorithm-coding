@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Algorithm-coding.iml" filepath="$PROJECT_DIR$/Algorithm-coding.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/leecoding.iml" filepath="$PROJECT_DIR$/.idea/modules/leecoding.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/leecoding_main.iml" filepath="$PROJECT_DIR$/.idea/modules/leecoding_main.iml" group="leecoding" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/leecoding_test.iml" filepath="$PROJECT_DIR$/.idea/modules/leecoding_test.iml" group="leecoding" />
     </modules>
