@@ -90,7 +90,7 @@ public class Solution123 {
      * @param prices
      * @return
      */
-    public static int maxProfit(int[] prices) {
+    public static int maxProfit2(int[] prices) {
 
         if (prices.length < 2) {
             return 0;
@@ -103,6 +103,49 @@ public class Solution123 {
         }
 
         return max;
+    }
+
+    /**
+     * 采用dp table的方法解决，首先定义三种状态1.天数 2.最多交易次数 3.当前是否持有股票，那么就需要一个三维dp数组来表示状态，
+     * dp[i][k][0 or 1]
+     * 0 <= i <= n-1, 1 <= k <= K
+     * n 为天数，大 K 为最多交易数（）此题为2，但可以演变
+     * 此问题共 n × K × 2 种状态，全部穷举就能搞定。
+     *
+     * for 0 <= i < n:
+     *     for 1 <= k <= K:
+     *         for s in {0, 1}:
+     *             dp[i][k][s] = max(buy, sell, rest)
+     *
+     * 显然我们最后求的值是dp[n-1][K][0]
+     * @param prices
+     * @return
+     */
+    public static int maxProfit(int[] prices) {
+
+        if (prices.length < 2) {
+            return 0;
+        }
+        //最大交易次数
+        int k=2;
+        int dp[][][] = new int[prices.length][k+1][2];
+
+        for (int i = 0; i < prices.length; i++) {
+            for (int j=k;j>=1;j--){
+                if (i == 0) {
+                    //初始化
+                 dp[i][j][0]=0;
+                 dp[i][j][1]=-prices[i];
+                } else {
+                    //不持股
+                    dp[i][j][0] = Math.max(dp[i - 1][j][1] + prices[i], dp[i - 1][j][0]);
+                    //持股,买入时候算一次交易所以是j-1
+                    dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j - 1][0] - prices[i]);
+                }
+            }
+
+        }
+        return dp[prices.length - 1][k][0] < 0 ? 0 : dp[prices.length - 1][k][0];
     }
 
 }
