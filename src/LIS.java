@@ -8,6 +8,14 @@ public class LIS {
  int a[]=new int[]{3,2,4,9,5,7};
         System.out.println(LIS(a,a.length));
     }
+
+    /**
+     * 额外维护递增数组maxValue，如果当前元素比数组末尾大则直接插入到末尾，如果更小的则覆盖掉maxValue比当前元素稍大的值
+     * 这样的maxValue数组值不一定是对但是长度一定是正确的
+     * @param arr
+     * @param n
+     * @return
+     */
     private static int LIS(int[] arr, int n) {
         int[] maxValue = new int[n];
         maxValue[0] = arr[0];
