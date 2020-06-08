@@ -17,7 +17,7 @@
 
 public class Solution410 {
     public static void main(String[] args) {
-        int nums[] = new int[]{7, 2, 5, 10, 8};
+        int nums[] = new int[]{2,3,2};
         System.out.println(splitArray(nums, 3));
     }
 
@@ -39,7 +39,7 @@ public class Solution410 {
         for (int i = 1; i < dp.length; i++) {
             for (int j = 1; j < dp[i].length; j++) {
                 for(int k=0;k<i;k++){
-                    //为什么？
+                    //为什么？dp[k][j-1]考虑k以前部分最优解，k以后的数组preSum[i]-preSum[k]才会影响新数组的结果
                     int max=Math.max(dp[k][j-1],preSum[i]-preSum[k]);
                     dp[i][j]= Math.min(dp[i][j],max);
                 }
