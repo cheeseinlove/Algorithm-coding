@@ -15,26 +15,23 @@
 public class Solution200 {
     public static void main(String[] args) {
      char nums[][]=new char[][]{{1,'1','0','0','0'},{'1','1',0,0,0},{0,0,'1',0,0},{0,0,0,'1','1'}};
-//        System.out.println(numIslands(nums));
+        System.out.println(numIslands(nums));
     }
-    class UnionFind {
+   static class UnionFind {
         int count;
         int[] parent;
-        int[] rank;
 
         public UnionFind(char[][] grid) {
             count = 0;
             int m = grid.length;
             int n = grid[0].length;
             parent = new int[m * n];
-            rank = new int[m * n];
             for (int i = 0; i < m; ++i) {
                 for (int j = 0; j < n; ++j) {
                     if (grid[i][j] == '1') {
                         parent[i * n + j] = i * n + j;
                         ++count;
                     }
-                    rank[i * n + j] = 0;
                 }
             }
         }
@@ -48,13 +45,10 @@ public class Solution200 {
             int rootx = find(x);
             int rooty = find(y);
             if (rootx != rooty) {
-                if (rank[rootx] > rank[rooty]) {
-                    parent[rooty] = rootx;
-                } else if (rank[rootx] < rank[rooty]) {
-                    parent[rootx] = rooty;
-                } else {
-                    parent[rooty] = rootx;
-                    rank[rootx] += 1;
+                if (rootx<=rooty){
+                    parent[rooty]=rootx;
+                }else {
+                    parent[rootx]=rooty;
                 }
                 --count;
             }
@@ -65,7 +59,7 @@ public class Solution200 {
         }
     }
 
-    public int numIslands(char[][] grid) {
+    public static int numIslands(char[][] grid) {
         if (grid == null || grid.length == 0) {
             return 0;
         }
@@ -76,7 +70,6 @@ public class Solution200 {
         for (int r = 0; r < nr; ++r) {
             for (int c = 0; c < nc; ++c) {
                 if (grid[r][c] == '1') {
-                    grid[r][c] = '0';
                     if (r - 1 >= 0 && grid[r-1][c] == '1') {
                         uf.union(r * nc + c, (r-1) * nc + c);
                     }
