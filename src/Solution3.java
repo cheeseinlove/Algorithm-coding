@@ -7,9 +7,6 @@ import java.util.Map;
  * @Description:
  */
 public class Solution3 {
-    public static void main(String[] args) {
-        System.out.println(findMaxLenghtOfNonRepeatedStr("abba"));
-    }
     public static int findMaxLenghtOfNonRepeatedStr(String s) {
         if (s.length()==0){
             return 0;
@@ -32,5 +29,32 @@ public class Solution3 {
         return maxLen == Integer.MIN_VALUE ? 0 : maxLen;
 
 
+
+
+
+
+    }
+
+
+    public static void main(String[] args) {
+        lengthOfLongestSubstring2("abba");
+    }
+    public static int lengthOfLongestSubstring2(String s) {
+     int l=0;
+     int r=0;
+     int ans=0;
+     Map<Character,Integer> index=new HashMap<>();
+     for(int i=0;i<s.length();i++){
+         char c=s.charAt(i);
+         if (index.containsKey(c)){
+           l=Math.max(index.get(c)+1,l);
+         }
+             r=i;
+
+         index.put(c,i);
+         ans=Math.max(ans,r-l+1);
+     }
+
+     return ans;
     }
 }

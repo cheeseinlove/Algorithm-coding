@@ -38,6 +38,7 @@ public class Solution889 {
             return root;
         }
         int postLastLeftNodeIndex = index.get(pre[preLeft + 1]);
+        //前序遍历根节点的右边那位节点的值对应后序遍历左子树最后一位
         int size = postLastLeftNodeIndex - postLeft + 1;
         root.left = getNode(pre, post, preLeft + 1, preLeft + size, postLeft, postLeft + size - 1);
         root.right = getNode(pre, post, preLeft + size + 1, preRight, postLeft + size, postRight - 1);
